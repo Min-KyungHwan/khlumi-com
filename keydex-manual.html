@@ -477,7 +477,7 @@
       </a>
       <a href="#pc">
         <strong>PC에서 지원하는 기능</strong>
-        <span>QR 로그인, PC 입력값 저장/수정 QR, 비밀번호 변경, 확장 프로그램 설정</span>
+        <span>QR 로그인, 계정 등록/수정 QR, 비밀번호 변경, 확장 프로그램 설정</span>
       </a>
       <a href="#mobile">
         <strong>스마트폰에서 지원하는 기능</strong>
@@ -546,7 +546,7 @@
         <ul>
           <li>최초 폰 페어링은 확장 프로그램과 폰 앱이 같은 릴레이 서버를 바라봐야 하므로 릴레이 URL이 필요합니다.</li>
           <li>QR 로그인도 폰 앱이 승인한 로그인 정보를 확장 프로그램이 릴레이 서버를 통해 받아야 하므로 릴레이 URL이 필요합니다.</li>
-          <li>PC 입력값 저장/수정 QR은 폰 앱이 QR 내용을 직접 받아 처리하는 흐름이므로, QR payload 안에 항상 relayBaseUrl이 필요한 것은 아닙니다.</li>
+          <li>계정 등록/수정 QR은 폰 앱이 QR 내용을 직접 받아 처리하는 흐름이므로, QR payload 안에 항상 relayBaseUrl이 필요한 것은 아닙니다.</li>
         </ul>
       </div>
 
@@ -600,7 +600,7 @@
         <div class="card-body">
           <h3>연결된 상태의 기본 메뉴</h3>
           <p>
-            폰 페어링이 완료되면 확장 프로그램 팝업에 <strong>QR 로그인 시작</strong>, <strong>PC 입력값 저장/수정 QR</strong>,
+            폰 페어링이 완료되면 확장 프로그램 팝업에 <strong>QR 로그인 시작</strong>, <strong>계정 등록/수정 QR</strong>,
             <strong>비밀번호 변경</strong>, <strong>연결 끊기</strong>가 표시됩니다.
           </p>
         </div>
@@ -624,9 +624,9 @@
         </article>
 
         <article class="card">
-          <img class="screen pc-tall" src="manual-assets/extension-save-qr.png" alt="PC 입력값 저장 또는 수정 QR 화면">
+          <img class="screen pc-tall" src="manual-assets/extension-save-qr.png" alt="계정 등록 또는 수정 QR 화면">
           <div class="card-body">
-            <h3>PC 입력값 저장/수정 QR</h3>
+            <h3>계정 등록/수정 QR</h3>
             <p>
               웹사이트의 로그인, 회원가입, 계정 수정 화면에 입력된 ID/PW를 QR로 만들어 폰 앱에 전달합니다.
               폰 앱은 사이트와 ID를 기준으로 기존 계정이 있으면 수정하고, 없으면 새 계정으로 등록합니다.
@@ -683,7 +683,7 @@
             <td>폰 페어링과 릴레이 URL 설정이 필요합니다.</td>
           </tr>
           <tr>
-            <td><span class="tag pc">PC 입력값 저장/수정 QR</span></td>
+            <td><span class="tag pc">계정 등록/수정 QR</span></td>
             <td>로그인, 회원가입, 계정 수정 화면</td>
             <td>PC 폼의 ID/PW를 QR로 전달하고 폰 앱에서 최종 저장</td>
             <td>사이트와 ID 기준으로 신규 등록 또는 기존 수정이 결정됩니다.</td>
@@ -791,7 +791,7 @@
           <h3>KeyDex 확장 QR 스캔</h3>
           <p>
             QR 버튼은 크롬 확장 프로그램과 연동되는 QR만 처리합니다.
-            최초 페어링, QR 로그인 승인, PC 입력값 저장/수정 QR, 비밀번호 변경 관련 QR을 스캔하는 전용 진입점입니다.
+            최초 페어링, QR 로그인 승인, 계정 등록/수정 QR, 비밀번호 변경 관련 QR을 스캔하는 전용 진입점입니다.
           </p>
         </div>
       </article>
@@ -819,22 +819,35 @@
         </article>
       </div>
 
-      <article class="card">
-        <img class="screen phone" src="manual-assets/ios-autofill-safari.png" alt="iOS Safari 로그인 화면에서 KeyDex 자동완성 후보가 표시된 화면">
-        <div class="card-body">
-          <h3>스마트폰 로그인 자동입력</h3>
-          <p>
-            스마트폰에서도 등록된 사이트 로그인 정보를 이용해 ID와 비밀번호를 자동입력할 수 있습니다.
-            iOS에서는 설정에서 KeyDex 암호 자동완성을 활성화한 뒤 Safari나 앱 로그인 화면의 입력란을 선택하면,
-            키보드 상단에 해당 도메인의 <strong>KeyDex 암호 후보</strong>가 표시됩니다.
-          </p>
-          <ul>
-            <li>후보를 선택하면 KeyDex에 저장된 아이디와 비밀번호가 로그인 폼에 입력됩니다.</li>
-            <li>도메인이 저장된 사이트 정보와 매칭되어야 후보가 표시됩니다.</li>
-            <li>앱 또는 사이트 구조에 따라 자동완성 표시 방식은 OS 화면 정책을 따릅니다.</li>
-          </ul>
-        </div>
-      </article>
+      <div class="grid">
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-autofill-set.png" alt="iOS Safari 로그인 화면에서 KeyDex 자동완성 후보가 표시된 화면">
+          <div class="card-body">
+            <h3>iOS 자동완성 설정</h3>
+            <p>
+              설정 > iOS 암호 자동완성 설정 을 통해서 iOS 자동 완성 및 암호 설정 화면에 진입합니다.
+              KeyDex 를 선택해주세요.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-autofill-chrom.png" alt="iOS Safari 로그인 화면에서 KeyDex 자동완성 후보가 표시된 화면">
+          <div class="card-body">
+            <h3>스마트폰 로그인 자동입력</h3>
+            <p>
+              스마트폰에서도 등록된 사이트 로그인 정보를 이용해 ID와 비밀번호를 자동입력할 수 있습니다.
+              iOS에서는 설정에서 KeyDex 암호 자동완성을 활성화한 뒤 Safari나 앱 로그인 화면의 입력란을 선택하면,
+              키보드 상단에 해당 도메인의 <strong>KeyDex 암호 후보</strong>가 표시됩니다.
+            </p>
+            <ul>
+              <li>후보를 선택하면 KeyDex에 저장된 아이디와 비밀번호가 로그인 폼에 입력됩니다.</li>
+              <li>도메인이 저장된 사이트 정보와 매칭되어야 후보가 표시됩니다.</li>
+              <li>앱 또는 사이트 구조에 따라 자동완성 표시 방식은 OS 화면 정책을 따릅니다.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
 
       <table class="feature-table" aria-label="스마트폰 기능 요약">
         <thead>
