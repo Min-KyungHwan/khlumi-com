@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="KeyDex는 스마트폰 금고와 크롬 확장 프로그램을 QR로 연결하는 계정 관리 제품입니다."
+  />
+  <meta name="theme-color" content="#111827" />
+  <title>KeyDex | KH Lumi</title>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #111827;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --accent-soft: #eff6ff;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 250, 252, 0.92);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    main {
+      padding-bottom: 88px;
+    }
+
+    .hero {
+      padding: 86px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+    }
+
+    .lead {
+      max-width: 640px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-weight: 800;
+      transition: 0.2s ease;
+    }
+
+    .button-primary {
+      color: #ffffff;
+      background: var(--accent);
+    }
+
+    .button-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: var(--surface);
+      border-color: var(--line);
+    }
+
+    .button-secondary:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-1px);
+    }
+
+    .visual {
+      display: grid;
+      grid-template-columns: 0.72fr 1fr;
+      gap: 14px;
+      align-items: center;
+      min-height: 420px;
+      padding: 24px;
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+    }
+
+    .visual img {
+      display: block;
+      width: 100%;
+      max-height: 374px;
+      object-fit: contain;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+    }
+
+    section {
+      padding: 76px 0 0;
+    }
+
+    .section-header {
+      max-width: 720px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 26px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.12rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .flow {
+      display: grid;
+      gap: 14px;
+      counter-reset: flow;
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .flow-item::before {
+      counter-increment: flow;
+      content: counter(flow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      color: #1e3a8a;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      font-weight: 900;
+    }
+
+    .flow-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .flow-item span {
+      color: var(--muted);
+    }
+
+    .manual-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 34px;
+      background: #111827;
+      color: #ffffff;
+      border-radius: 18px;
+    }
+
+    .manual-banner h2 {
+      margin-bottom: 8px;
+    }
+
+    .manual-banner p {
+      margin: 0;
+      color: #cbd5e1;
+    }
+
+    .manual-banner .button-secondary {
+      flex: 0 0 auto;
+      color: var(--text);
+    }
+
+    footer {
+      padding: 30px 0 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        gap: 14px;
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        padding: 64px 0 48px;
+      }
+
+      .hero-grid,
+      .visual,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .visual {
+        min-height: auto;
+      }
+
+      .manual-banner,
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(calc(100% - 28px), var(--max-width));
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .visual,
+      .manual-banner {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="KH Lumi 홈">KH Lumi</a>
+
+      <nav class="nav-links" aria-label="KeyDex 메뉴">
+        <a href="index.html">회사소개</a>
+        <a href="#features">주요 기능</a>
+        <a href="#how">사용 흐름</a>
+        <a href="keydex-manual.html">매뉴얼</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">KeyDex</span>
+          <h1>스마트폰 금고로 완성하는 QR 로그인</h1>
+          <p class="lead">
+            KeyDex는 계정 정보를 스마트폰 앱에 보관하고, PC 크롬 확장 프로그램과
+            QR로 연결해 로그인, 계정 저장, 비밀번호 변경을 돕는 제품입니다.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="keydex-manual.html">사용자 매뉴얼 보기</a>
+            <a class="button button-secondary" href="mailto:khlumi.dev@gmail.com">문의하기</a>
+          </div>
+        </div>
+
+        <div class="visual" aria-label="KeyDex 제품 화면">
+          <img src="manual-assets/ios-vault.png" alt="KeyDex 모바일 앱 금고 목록 화면" />
+          <img src="manual-assets/extension-connected.png" alt="KeyDex 크롬 확장 프로그램 연결 화면" />
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>주요 기능</h2>
+          <p>
+            KeyDex는 모바일 금고, PC 확장 프로그램, QR 승인 흐름을 하나로 묶어
+            계정 사용 과정을 단순하게 만듭니다.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>모바일 금고</h3>
+            <p>
+              사이트별 계정과 비밀번호를 스마트폰 앱에 저장하고 생체인증으로
+              금고를 열어 민감한 정보를 확인합니다.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>QR 로그인</h3>
+            <p>
+              PC 로그인 화면에서 확장 프로그램이 QR을 만들고, 폰 앱에서 승인하면
+              선택한 계정이 웹페이지에 입력됩니다.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>PC 입력값 저장</h3>
+            <p>
+              회원가입 또는 계정 수정 화면의 ID와 비밀번호를 QR로 전달해 폰 앱에
+              새 계정으로 저장하거나 기존 계정을 갱신합니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-header">
+          <h2>사용 흐름</h2>
+          <p>
+            처음에는 한 번만 폰과 확장 프로그램을 연결하고, 이후에는 사이트별로
+            QR 승인 흐름을 사용합니다.
+          </p>
+        </div>
+
+        <div class="flow">
+          <div class="flow-item">
+            <div>
+              <strong>모바일 앱에서 금고 열기</strong>
+              <span>KeyDex 앱을 실행하고 생체인증으로 저장된 계정 금고를 엽니다.</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div>
+              <strong>크롬 확장 프로그램 연결</strong>
+              <span>확장 프로그램의 폰 연결 QR을 KeyDex 앱으로 스캔해 PC와 폰을 연결합니다.</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div>
+              <strong>로그인 또는 저장 QR 사용</strong>
+              <span>웹사이트에서 QR 로그인, PC 입력값 저장/수정, 비밀번호 변경 기능을 선택합니다.</span>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div>
+              <strong>폰에서 확인 후 반영</strong>
+              <span>KeyDex 앱에서 계정을 선택하거나 저장 내용을 확인하면 PC 화면에 결과가 반영됩니다.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="manual-banner">
+          <div>
+            <h2>설치와 사용법은 매뉴얼에서 확인하세요.</h2>
+            <p>
+              모바일 앱 잠금 해제, 크롬 확장 프로그램 설치, 폰 페어링,
+              QR 로그인, 계정 저장 방법을 화면별로 정리했습니다.
+            </p>
+          </div>
+          <a class="button button-secondary" href="keydex-manual.html">매뉴얼 열기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 KH Lumi. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="index.html">회사소개</a>
+        <a href="privacy.html">개인정보처리방침</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

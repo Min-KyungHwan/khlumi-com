@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KeyDex 사용자 메뉴얼</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0014;
+      --panel: #170224;
+      --panel-2: #21062f;
+      --ink: #fff7ff;
+      --muted: #d8bfd4;
+      --subtle: #9d86bd;
+      --accent: #e85a93;
+      --accent-2: #6757d7;
+      --line: #5037a9;
+      --pc: #2563eb;
+      --ok: #16a34a;
+      --warn: #f59e0b;
+      --shadow: rgba(0, 0, 0, .32);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(232, 90, 147, .24), transparent 28rem),
+        radial-gradient(circle at 84% 12%, rgba(103, 87, 215, .24), transparent 30rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 0, 20, .88);
+      border-bottom: 1px solid rgba(103, 87, 215, .35);
+      backdrop-filter: blur(12px);
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 70px;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--ink);
+      font-size: 19px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .hero {
+      padding: 72px 0 46px;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .hero-kicker::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 24px rgba(232, 90, 147, .8);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.04;
+    }
+
+    .lead {
+      max-width: 840px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 13px;
+      border: 1px solid rgba(232, 90, 147, .45);
+      border-radius: 999px;
+      background: rgba(23, 2, 36, .78);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 16px 0 56px;
+    }
+
+    .toc a {
+      display: block;
+      min-height: 116px;
+      padding: 20px;
+      border: 1px solid rgba(103, 87, 215, .62);
+      border-radius: 8px;
+      background: rgba(23, 2, 36, .76);
+      text-decoration: none;
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .toc strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+      font-size: 20px;
+    }
+
+    .toc span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      margin: 0 0 72px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 22px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(103, 87, 215, .45);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 44px);
+      line-height: 1.15;
+    }
+
+    .section-head p {
+      max-width: 720px;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(232, 90, 147, .72);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid rgba(103, 87, 215, .55);
+      border-radius: 8px;
+      background: rgba(23, 2, 36, .82);
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card ul,
+    .note ul {
+      margin: 12px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .card li + li,
+    .note li + li {
+      margin-top: 7px;
+    }
+
+    .screen {
+      display: block;
+      width: 100%;
+      background: #f8fafc;
+      border-bottom: 1px solid rgba(103, 87, 215, .35);
+    }
+
+    .screen.phone {
+      width: min(100%, 360px);
+      max-height: 620px;
+      margin: 0 auto;
+      object-fit: contain;
+      background: #0b0014;
+    }
+
+    .screen.pc-tall {
+      width: min(100%, 420px);
+      max-height: 640px;
+      margin: 0 auto;
+      object-fit: contain;
+      background: #f8fafc;
+    }
+
+    .screen.pc-wide {
+      max-height: 390px;
+      object-fit: contain;
+    }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+      counter-reset: flow;
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border: 1px solid rgba(103, 87, 215, .44);
+      border-radius: 8px;
+      background: rgba(33, 6, 47, .72);
+    }
+
+    .flow-item::before {
+      counter-increment: flow;
+      content: counter(flow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(232, 90, 147, .17);
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .flow-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--ink);
+    }
+
+    .flow-item span {
+      color: var(--muted);
+    }
+
+    .note {
+      margin: 20px 0;
+      padding: 18px 20px;
+      border: 1px solid rgba(245, 158, 11, .52);
+      border-radius: 8px;
+      background: rgba(245, 158, 11, .09);
+      color: var(--muted);
+    }
+
+    .note strong {
+      color: var(--ink);
+    }
+
+    .feature-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid rgba(103, 87, 215, .45);
+      border-radius: 8px;
+      background: rgba(23, 2, 36, .76);
+    }
+
+    .feature-table th,
+    .feature-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(103, 87, 215, .28);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .feature-table th {
+      color: var(--ink);
+      background: rgba(103, 87, 215, .18);
+      font-size: 14px;
+    }
+
+    .feature-table td {
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .tag.mobile {
+      background: rgba(232, 90, 147, .18);
+      color: #ff9ec3;
+    }
+
+    .tag.pc {
+      background: rgba(37, 99, 235, .18);
+      color: #9ec5ff;
+    }
+
+    .tag.safe {
+      background: rgba(22, 163, 74, .18);
+      color: #86efac;
+    }
+
+    .footer {
+      margin: 72px 0 56px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(103, 87, 215, .45);
+      color: var(--subtle);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .site-nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .toc,
+      .grid,
+      .grid.three,
+      .section-head {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .screen.phone,
+      .screen.pc-tall {
+        max-height: none;
+      }
+
+      .feature-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="page site-nav">
+      <a class="brand" href="index.html" aria-label="KH Lumi 홈">KH Lumi</a>
+      <nav class="nav-links" aria-label="문서 메뉴">
+        <a href="index.html">회사소개</a>
+        <a href="keydex.html">제품 소개</a>
+        <a href="#install">설치</a>
+        <a href="#pc">PC 기능</a>
+        <a href="#mobile">모바일 기능</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <header class="hero">
+      <div class="hero-kicker">KeyDex Manual</div>
+      <h1>KeyDex 사용자 메뉴얼</h1>
+      <p class="lead">
+        KeyDex는 스마트폰 금고를 중심으로 계정을 저장하고, 크롬 확장 프로그램의 QR을 통해 PC 로그인과 계정 저장을 연결합니다.
+        이 문서는 현재 프로젝트 상태와 제공된 화면 이미지를 기준으로 최초 설치, PC 기능, 스마트폰 기능을 정리한 메뉴얼입니다.
+      </p>
+      <div class="doc-meta">
+        <span class="pill">기준일: 2026-09-16</span>
+        <span class="pill">대상: KeyDex 모바일 앱</span>
+        <span class="pill">대상: keydex QR Login 크롬 확장 프로그램</span>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="문서 목차">
+      <a href="#install">
+        <strong>최초 설치</strong>
+        <span>모바일 앱 잠금 해제, 크롬 확장 프로그램 설치, 최초 폰 페어링 절차</span>
+      </a>
+      <a href="#pc">
+        <strong>PC에서 지원하는 기능</strong>
+        <span>QR 로그인, PC 입력값 저장/수정 QR, 비밀번호 변경, 확장 프로그램 설정</span>
+      </a>
+      <a href="#mobile">
+        <strong>스마트폰에서 지원하는 기능</strong>
+        <span>금고 관리, 사이트 등록/수정, QR 스캔, 자동완성, 설정</span>
+      </a>
+    </nav>
+
+    <section id="install">
+      <div class="section-head">
+        <div>
+          <h2>최초 설치</h2>
+          <p>
+            KeyDex는 폰 앱에 계정 정보를 보관하고, PC 확장 프로그램은 QR 세션을 만들어 폰의 승인을 기다리는 구조입니다.
+            처음에는 모바일 앱 잠금 해제와 크롬 확장 프로그램 설치, 그리고 폰 페어링을 한 번 진행해야 합니다.
+          </p>
+        </div>
+        <span class="step-badge">1</span>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-lock.png" alt="KeyDex 잠금 화면">
+          <div class="card-body">
+            <h3>1. 모바일 앱 실행 및 금고 열기</h3>
+            <p>
+              KeyDex 앱을 실행한 뒤 생체인증으로 금고를 엽니다. 금고가 잠긴 상태에서는 계정 조회, QR 승인, 비밀번호 복사 같은 민감 기능을 사용할 수 없습니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-wide" src="manual-assets/extension-install.png" alt="크롬 확장 프로그램 설치 화면">
+          <div class="card-body">
+            <h3>2. 크롬 확장 프로그램 설치</h3>
+            <p>
+              크롬 확장 프로그램 관리 화면에서 <strong>keydex QR Login</strong> 확장 프로그램을 로드하고 활성화합니다.
+              개발 빌드 테스트 시에는 압축 해제된 확장 프로그램 로드 방식을 사용할 수 있습니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-wide" src="manual-assets/extension-toolbar.png" alt="크롬 툴바의 KeyDex 확장 아이콘">
+          <div class="card-body">
+            <h3>3. 확장 프로그램 아이콘 고정</h3>
+            <p>
+              확장 프로그램을 자주 사용할 수 있도록 크롬 툴바에 KeyDex 아이콘을 고정합니다. 이후 웹사이트 로그인 화면에서 이 아이콘을 눌러 QR 로그인과 저장 기능을 시작합니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-wide" src="manual-assets/extension-settings.png" alt="KeyDex 확장 프로그램 설정 화면">
+          <div class="card-body">
+            <h3>4. 확장 프로그램 설정 확인</h3>
+            <p>
+              확장 프로그램 설정에서 릴레이 서버 URL, QR 유효 시간, 조회 간격, 자동입력 후 로그인 버튼 클릭 여부를 확인합니다.
+              폰 연결 전에는 상태가 <strong>폰 연결 안 됨</strong>으로 표시됩니다.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="note">
+        <strong>릴레이 URL이 필요한 경우</strong>
+        <ul>
+          <li>최초 폰 페어링은 확장 프로그램과 폰 앱이 같은 릴레이 서버를 바라봐야 하므로 릴레이 URL이 필요합니다.</li>
+          <li>QR 로그인도 폰 앱이 승인한 로그인 정보를 확장 프로그램이 릴레이 서버를 통해 받아야 하므로 릴레이 URL이 필요합니다.</li>
+          <li>PC 입력값 저장/수정 QR은 폰 앱이 QR 내용을 직접 받아 처리하는 흐름이므로, QR payload 안에 항상 relayBaseUrl이 필요한 것은 아닙니다.</li>
+        </ul>
+      </div>
+
+      <div class="grid three">
+        <article class="card">
+          <img class="screen pc-tall" src="manual-assets/extension-pairing-needed.png" alt="폰 연결 필요 화면">
+          <div class="card-body">
+            <h3>5. 폰 연결 QR 시작</h3>
+            <p>
+              확장 프로그램 팝업에서 <strong>폰 연결 QR</strong> 버튼을 누르면 최초 연결용 QR이 표시됩니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-qr-scan.png" alt="KeyDex 확장 QR 스캔 화면">
+          <div class="card-body">
+            <h3>6. 폰 앱으로 QR 스캔</h3>
+            <p>
+              모바일 앱의 QR 스캔 화면에서 크롬 확장 프로그램의 최초 페어링, QR 로그인, KeyDex 저장 QR을 스캔합니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-tall" src="manual-assets/extension-pairing-wait.png" alt="폰 연결 승인 대기 화면">
+          <div class="card-body">
+            <h3>7. 연결 승인 대기</h3>
+            <p>
+              폰에서 승인하면 확장 프로그램은 폰 공개키를 저장하고 연결 상태로 전환합니다. QR 시간이 만료되면 새 QR을 다시 생성합니다.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="pc">
+      <div class="section-head">
+        <div>
+          <h2>PC에서 지원하는 기능</h2>
+          <p>
+            PC 확장 프로그램은 비밀번호를 직접 보관하지 않습니다. 현재 페이지의 사이트 정보를 기준으로 QR 세션을 만들고,
+            폰 앱의 승인 또는 선택 결과를 받아 웹페이지 입력란에 반영합니다.
+          </p>
+        </div>
+        <span class="step-badge">2</span>
+      </div>
+
+      <article class="card">
+        <img class="screen pc-tall" src="manual-assets/extension-connected.png" alt="폰 연결됨 상태의 확장 프로그램 팝업">
+        <div class="card-body">
+          <h3>연결된 상태의 기본 메뉴</h3>
+          <p>
+            폰 페어링이 완료되면 확장 프로그램 팝업에 <strong>QR 로그인 시작</strong>, <strong>PC 입력값 저장/수정 QR</strong>,
+            <strong>비밀번호 변경</strong>, <strong>연결 끊기</strong>가 표시됩니다.
+          </p>
+        </div>
+      </article>
+
+      <div class="grid">
+        <article class="card">
+          <img class="screen pc-tall" src="manual-assets/extension-login-qr.png" alt="QR 로그인 승인 대기 화면">
+          <div class="card-body">
+            <h3>QR 로그인</h3>
+            <p>
+              로그인 페이지에서 <strong>QR 로그인 시작</strong>을 누르면 승인용 QR이 표시됩니다. 폰 앱으로 스캔하고 생체인증을 승인하면,
+              해당 사이트에 저장된 ID와 비밀번호가 PC 로그인 폼에 자동 입력됩니다.
+            </p>
+            <ul>
+              <li>사이트 도메인 기준으로 금고의 계정을 찾습니다.</li>
+              <li>여러 계정이 있으면 폰 앱에서 사용할 계정을 선택합니다.</li>
+              <li>설정에 따라 자동입력 후 로그인 버튼 클릭까지 수행할 수 있습니다.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-tall" src="manual-assets/extension-save-qr.png" alt="PC 입력값 저장 또는 수정 QR 화면">
+          <div class="card-body">
+            <h3>PC 입력값 저장/수정 QR</h3>
+            <p>
+              웹사이트의 로그인, 회원가입, 계정 수정 화면에 입력된 ID/PW를 QR로 만들어 폰 앱에 전달합니다.
+              폰 앱은 사이트와 ID를 기준으로 기존 계정이 있으면 수정하고, 없으면 새 계정으로 등록합니다.
+            </p>
+            <ul>
+              <li>확장 프로그램은 입력값 전달자 역할만 합니다.</li>
+              <li>최종 저장 여부는 폰 앱에서 사용자가 확인합니다.</li>
+              <li>PC에는 계정 정보가 저장되지 않습니다.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-tall" src="manual-assets/extension-password-change.png" alt="비밀번호 변경 계정 선택 대기 화면">
+          <div class="card-body">
+            <h3>비밀번호 변경 지원</h3>
+            <p>
+              사이트의 비밀번호 변경 화면에서 <strong>비밀번호 변경</strong>을 누르면 폰 앱이 해당 사이트 계정 선택을 처리합니다.
+              선택된 계정의 현재 비밀번호와 새 비밀번호가 변경 폼에 입력되는 흐름을 지원합니다.
+            </p>
+            <ul>
+              <li>비밀번호 변경 폼은 사이트마다 구조가 다르므로 일부 사이트에서는 입력란 인식이 제한될 수 있습니다.</li>
+              <li>변경 완료 후 새 비밀번호를 KeyDex에 저장하는 절차까지 함께 확인해야 합니다.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen pc-wide" src="manual-assets/extension-settings.png" alt="확장 프로그램 상세 설정">
+          <div class="card-body">
+            <h3>확장 프로그램 설정</h3>
+            <p>
+              릴레이 서버 URL, QR 유효 시간, 릴레이 조회 간격, 자동입력 후 로그인 버튼 클릭 옵션을 조정합니다.
+              폰 연결을 다시 해야 하는 경우에는 먼저 기존 연결을 끊고 새 연결 QR로 페어링합니다.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <table class="feature-table" aria-label="PC 기능 요약">
+        <thead>
+          <tr>
+            <th>기능</th>
+            <th>사용 위치</th>
+            <th>처리 방식</th>
+            <th>주의사항</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag pc">QR 로그인</span></td>
+            <td>로그인 페이지</td>
+            <td>확장 프로그램 QR 생성, 폰 승인, 릴레이를 통한 암호화 응답 수신 후 입력</td>
+            <td>폰 페어링과 릴레이 URL 설정이 필요합니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag pc">PC 입력값 저장/수정 QR</span></td>
+            <td>로그인, 회원가입, 계정 수정 화면</td>
+            <td>PC 폼의 ID/PW를 QR로 전달하고 폰 앱에서 최종 저장</td>
+            <td>사이트와 ID 기준으로 신규 등록 또는 기존 수정이 결정됩니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag pc">비밀번호 변경</span></td>
+            <td>비밀번호 변경 화면</td>
+            <td>폰에서 계정을 선택하고 변경 폼에 필요한 값을 입력</td>
+            <td>사이트별 폼 구조 차이로 수동 확인이 필요할 수 있습니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag safe">연결 끊기</span></td>
+            <td>확장 프로그램 팝업, 앱 설정</td>
+            <td>저장된 페어링 공개키와 연결 상태 삭제</td>
+            <td>다시 사용하려면 최초 페어링 QR을 새로 스캔합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="mobile">
+      <div class="section-head">
+        <div>
+          <h2>스마트폰에서 지원하는 기능</h2>
+          <p>
+            스마트폰 앱은 KeyDex의 기준 저장소입니다. 계정 목록, 사이트별 로그인 정보, QR 승인, 비밀번호 복사,
+            자동완성 설정, 로컬 DB 확인 메뉴가 모두 폰 앱을 중심으로 동작합니다.
+          </p>
+        </div>
+        <span class="step-badge">3</span>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-vault.png" alt="KeyDex 금고 목록 화면">
+          <div class="card-body">
+            <h3>금고 목록, 검색, 카테고리</h3>
+            <p>
+              금고 화면에서는 저장된 사이트를 목록으로 확인하고, 사이트명, 도메인, 계정 기준으로 검색할 수 있습니다.
+              카테고리 칩을 이용해 업무, 개발, 메일, OS, 포털 등으로 빠르게 필터링합니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-entry-detail.png" alt="사이트 상세 화면">
+          <div class="card-body">
+            <h3>사이트 상세 및 비밀번호 복사</h3>
+            <p>
+              사이트 상세 화면에서 계정 ID와 비밀번호를 확인합니다. 비밀번호는 기본적으로 마스킹되며,
+              필요한 경우 표시하거나 클립보드에 복사할 수 있습니다.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-new-site-top.png" alt="새 사이트 등록 상단 화면">
+          <div class="card-body">
+            <h3>새 사이트 등록</h3>
+            <p>
+              새 사이트 등록 화면에서 사이트명, 기본 도메인, 로그인 alias host, 카테고리, 메모를 입력합니다.
+              하나의 사이트에 여러 계정을 추가할 수 있습니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-new-site-account.png" alt="새 사이트 등록 계정 입력 화면">
+          <div class="card-body">
+            <h3>계정 추가</h3>
+            <p>
+              계정 영역에서 로그인 방식, 아이디 또는 이메일, 비밀번호, 로그인 방식 메모를 입력합니다.
+              저장 후 금고 목록과 QR 로그인 후보로 사용할 수 있습니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-edit-top.png" alt="사이트 수정 상단 화면">
+          <div class="card-body">
+            <h3>사이트 수정</h3>
+            <p>
+              기존 사이트의 이름, 도메인, alias host, 카테고리, 메모를 수정할 수 있습니다.
+              도메인 정보는 QR 로그인과 자동완성 매칭에 사용되므로 실제 로그인 도메인 기준으로 관리합니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-edit-account.png" alt="사이트 수정 계정 영역 화면">
+          <div class="card-body">
+            <h3>계정 수정</h3>
+            <p>
+              계정의 아이디와 비밀번호를 수정합니다. 기존 계정 수정 시 새 비밀번호를 비워두면 저장된 암호화 값을 유지하는 흐름을 사용할 수 있습니다.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <article class="card">
+        <img class="screen phone" src="manual-assets/ios-qr-scan.png" alt="KeyDex 확장 QR 스캔">
+        <div class="card-body">
+          <h3>KeyDex 확장 QR 스캔</h3>
+          <p>
+            QR 버튼은 크롬 확장 프로그램과 연동되는 QR만 처리합니다.
+            최초 페어링, QR 로그인 승인, PC 입력값 저장/수정 QR, 비밀번호 변경 관련 QR을 스캔하는 전용 진입점입니다.
+          </p>
+        </div>
+      </article>
+
+      <div class="grid">
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-settings-top.png" alt="KeyDex 설정 상단 화면">
+          <div class="card-body">
+            <h3>설정 화면 상단</h3>
+            <p>
+              밝은 도감 스타일, 앱 자동 잠금, 비밀번호 표시 시간, SQLite 보기 여부, 클립보드 삭제 시간, 암호화 백업/복원 메뉴를 확인합니다.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img class="screen phone" src="manual-assets/ios-settings-bottom.png" alt="KeyDex 설정 하단 화면">
+          <div class="card-body">
+            <h3>설정 화면 하단</h3>
+            <p>
+              OS 암호 자동완성 설정 안내, 릴레이 URL, 연결끊기, 지금 잠그기 기능을 제공합니다.
+              폰 페어링을 해제하면 확장 프로그램과 다시 연결해야 합니다.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <article class="card">
+        <img class="screen phone" src="manual-assets/ios-autofill-safari.png" alt="iOS Safari 로그인 화면에서 KeyDex 자동완성 후보가 표시된 화면">
+        <div class="card-body">
+          <h3>스마트폰 로그인 자동입력</h3>
+          <p>
+            스마트폰에서도 등록된 사이트 로그인 정보를 이용해 ID와 비밀번호를 자동입력할 수 있습니다.
+            iOS에서는 설정에서 KeyDex 암호 자동완성을 활성화한 뒤 Safari나 앱 로그인 화면의 입력란을 선택하면,
+            키보드 상단에 해당 도메인의 <strong>KeyDex 암호 후보</strong>가 표시됩니다.
+          </p>
+          <ul>
+            <li>후보를 선택하면 KeyDex에 저장된 아이디와 비밀번호가 로그인 폼에 입력됩니다.</li>
+            <li>도메인이 저장된 사이트 정보와 매칭되어야 후보가 표시됩니다.</li>
+            <li>앱 또는 사이트 구조에 따라 자동완성 표시 방식은 OS 화면 정책을 따릅니다.</li>
+          </ul>
+        </div>
+      </article>
+
+      <table class="feature-table" aria-label="스마트폰 기능 요약">
+        <thead>
+          <tr>
+            <th>기능</th>
+            <th>설명</th>
+            <th>보안 동작</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag mobile">금고 잠금</span></td>
+            <td>앱 실행 또는 즉시 잠금 후 생체인증으로 금고를 엽니다.</td>
+            <td>잠금 상태에서는 저장된 계정과 QR 승인 기능을 사용할 수 없습니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag mobile">계정 관리</span></td>
+            <td>사이트, 도메인, 카테고리, 여러 계정, 로그인 방식 메모를 관리합니다.</td>
+            <td>비밀번호는 네이티브 암호화 계층을 통해 암호화되어 저장됩니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag mobile">비밀번호 보기/복사</span></td>
+            <td>필요할 때 비밀번호를 표시하거나 클립보드에 복사합니다.</td>
+            <td>표시 시간과 클립보드 삭제 시간이 설정값에 따라 제한됩니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag mobile">QR 승인</span></td>
+            <td>확장 프로그램의 페어링, 로그인, 저장/수정 QR을 스캔하고 승인합니다.</td>
+            <td>중요 동작은 폰 생체인증과 사용자 확인을 거쳐 진행합니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag mobile">OS 자동완성</span></td>
+            <td>Android AutofillService와 iOS Credential Provider 기반으로 스마트폰 로그인 화면에서도 저장된 계정 후보를 표시합니다.</td>
+            <td>도메인 또는 앱 패키지 매칭 후 사용자가 KeyDex 후보를 선택해야 입력됩니다.</td>
+          </tr>
+          <tr>
+            <td><span class="tag mobile">SQLite 보기</span></td>
+            <td>설정에서 SQLite 보기 여부를 켜면 로컬 DB 전체 조회 메뉴를 표시합니다.</td>
+            <td>조회 전용이며 저장된 암호화 값은 복호화하지 않고 DB 기록 그대로 표시합니다.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="note">
+        <strong>운영 시 확인할 점</strong>
+        <ul>
+          <li>QR 로그인과 PC 저장/수정 흐름은 확장 프로그램, 모바일 앱, 릴레이 서버가 모두 같은 설정을 사용할 때 정상 동작합니다.</li>
+          <li>은행, 홈택스처럼 공동인증서나 별도 보안 모듈을 요구하는 사이트는 일반 ID/PW 자동입력만으로 로그인을 완료하지 못할 수 있습니다.</li>
+          <li>Chrome 프로필 로그인처럼 브라우저 자체 로그인 UI는 일반 확장 프로그램이 비밀번호를 자동 입력하기 어렵습니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        이 메뉴얼은 프로젝트의 현재 구현 상태와 제공된 스크린샷을 기준으로 작성되었습니다.
+        릴레이 서버 주소, 확장 프로그램 버전, OS 자동완성 설정 화면은 배포 환경에 따라 달라질 수 있습니다.
+      </p>
+    </footer>
+  </main>
+</body>
+</html>
