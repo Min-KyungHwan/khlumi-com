@@ -120,7 +120,6 @@
     }
 
     .lead {
-      max-width: 840px;
       margin: 22px 0 0;
       color: var(--muted);
       font-size: 19px;
@@ -197,7 +196,6 @@
     }
 
     .section-head p {
-      max-width: 720px;
       margin: 10px 0 0;
       color: var(--muted);
     }
@@ -461,7 +459,7 @@
       <div class="hero-kicker">KeyDex Manual</div>
       <h1>KeyDex 사용자 메뉴얼</h1>
       <p class="lead">
-        KeyDex는 스마트폰 금고를 중심으로 계정을 저장하고, 크롬 확장 프로그램의 QR을 통해 PC 로그인과 계정 저장을 연결합니다.
+        KeyDex는 스마트폰 금고를 중심으로 계정을 저장하고, 크롬 확장 프로그램의 QR을 통해 PC 로그인과 계정 저장을 연결합니다.<br>
         이 문서는 현재 프로젝트 상태와 제공된 화면 이미지를 기준으로 최초 설치, PC 기능, 스마트폰 기능을 정리한 메뉴얼입니다.
       </p>
       <div class="doc-meta">
@@ -474,11 +472,11 @@
     <nav class="toc" aria-label="문서 목차">
       <a href="#install">
         <strong>최초 설치</strong>
-        <span>모바일 앱 잠금 해제, 크롬 확장 프로그램 설치, 최초 폰 페어링 절차</span>
+        <span>모바일 앱 잠금 해제, 크롬 확장 프로그램 설치,<br> 최초 폰 페어링 절차</span>
       </a>
       <a href="#pc">
         <strong>PC에서 지원하는 기능</strong>
-        <span>QR 로그인, 계정 등록/수정 QR, 비밀번호 변경, 확장 프로그램 설정</span>
+        <span>QR 로그인, 계정 등록/수정 QR, 비밀번호 변경,<br> 확장 프로그램 설정</span>
       </a>
       <a href="#mobile">
         <strong>스마트폰에서 지원하는 기능</strong>
@@ -491,7 +489,7 @@
         <div>
           <h2>최초 설치</h2>
           <p>
-            KeyDex는 폰 앱에 계정 정보를 보관하고, PC 확장 프로그램은 QR 세션을 만들어 폰의 승인을 기다리는 구조입니다.
+            KeyDex는 폰 앱에 계정 정보를 보관하고, PC 확장 프로그램은 QR 세션을 만들어 폰의 승인을 기다리는 구조입니다.<br>
             처음에는 모바일 앱 잠금 해제와 크롬 확장 프로그램 설치, 그리고 폰 페어링을 한 번 진행해야 합니다.
           </p>
         </div>
@@ -504,28 +502,28 @@
           <div class="card-body">
             <h3>1. 모바일 앱 실행 및 금고 열기</h3>
             <p>
-              KeyDex 앱을 실행한 뒤 생체인증으로 금고를 엽니다. 금고가 잠긴 상태에서는 계정 조회, QR 승인, 비밀번호 복사 같은 민감 기능을 사용할 수 없습니다.
+              KeyDex 앱을 실행한 뒤 생체인증으로 금고를 엽니다. <br>
+			  금고가 잠긴 상태에서는 계정 조회, QR 승인, 비밀번호 복사 같은 민감 기능을 사용할 수 없습니다.
             </p>
           </div>
         </article>
 
         <article class="card">
-          <img class="screen pc-wide" src="manual-assets/extension-install.png" alt="크롬 확장 프로그램 설치 화면">
+          <img class="screen pc-wide" src="manual-assets/extension-install2.png" alt="크롬 확장 프로그램 설치 화면">
           <div class="card-body">
             <h3>2. 크롬 확장 프로그램 설치</h3>
             <p>
               크롬 확장 프로그램 관리 화면에서 <strong>keydex QR Login</strong> 확장 프로그램을 로드하고 활성화합니다.
-              개발 빌드 테스트 시에는 압축 해제된 확장 프로그램 로드 방식을 사용할 수 있습니다.
             </p>
           </div>
         </article>
 
         <article class="card">
-          <img class="screen pc-wide" src="manual-assets/extension-toolbar.png" alt="크롬 툴바의 KeyDex 확장 아이콘">
+          <img class="screen pc-wide" src="manual-assets/extension-toolbar2.png" alt="크롬 툴바의 KeyDex 확장 아이콘">
           <div class="card-body">
             <h3>3. 확장 프로그램 아이콘 고정</h3>
             <p>
-              확장 프로그램을 자주 사용할 수 있도록 크롬 툴바에 KeyDex 아이콘을 고정합니다. 이후 웹사이트 로그인 화면에서 이 아이콘을 눌러 QR 로그인과 저장 기능을 시작합니다.
+              확장 프로그램을 자주 사용할 수 있도록 크롬 툴바에 KeyDex 아이콘을 고정합니다. <br>이후 웹사이트 로그인 화면에서 이 아이콘을 눌러 QR 로그인과 저장 기능을 시작합니다.
             </p>
           </div>
         </article>
@@ -535,7 +533,7 @@
           <div class="card-body">
             <h3>4. 확장 프로그램 설정 확인</h3>
             <p>
-              확장 프로그램 설정에서 릴레이 서버 URL, QR 유효 시간, 조회 간격, 자동입력 후 로그인 버튼 클릭 여부를 확인합니다.
+              확장 프로그램 설정에서 릴레이 서버 URL, QR 유효 시간, 조회 간격, 자동입력 후 로그인 버튼 클릭 여부를 확인할 수 있습니다.<br>
               폰 연결 전에는 상태가 <strong>폰 연결 안 됨</strong>으로 표시됩니다.
             </p>
           </div>
@@ -545,6 +543,7 @@
       <div class="note">
         <strong>릴레이 URL이 필요한 경우</strong>
         <ul>
+		  <li>릴레이 URL은 기본적으로 자동으로 입력됩니다.</li>
           <li>최초 폰 페어링은 확장 프로그램과 폰 앱이 같은 릴레이 서버를 바라봐야 하므로 릴레이 URL이 필요합니다.</li>
           <li>QR 로그인도 폰 앱이 승인한 로그인 정보를 확장 프로그램이 릴레이 서버를 통해 받아야 하므로 릴레이 URL이 필요합니다.</li>
           <li>계정 등록/수정 QR은 폰 앱이 QR 내용을 직접 받아 처리하는 흐름이므로, QR payload 안에 항상 relayBaseUrl이 필요한 것은 아닙니다.</li>
@@ -589,7 +588,8 @@
         <div>
           <h2>PC에서 지원하는 기능</h2>
           <p>
-            PC 확장 프로그램은 비밀번호를 직접 보관하지 않습니다. 현재 페이지의 사이트 정보를 기준으로 QR 세션을 만들고,
+            PC 확장 프로그램은 비밀번호를 직접 보관하지 않습니다. <br>
+			현재 페이지의 사이트 정보를 기준으로 QR 세션을 만들고,
             폰 앱의 승인 또는 선택 결과를 받아 웹페이지 입력란에 반영합니다.
           </p>
         </div>
@@ -710,7 +710,8 @@
         <div>
           <h2>스마트폰에서 지원하는 기능</h2>
           <p>
-            스마트폰 앱은 KeyDex의 기준 저장소입니다. 계정 목록, 사이트별 로그인 정보, QR 승인, 비밀번호 복사,
+            스마트폰 앱은 KeyDex의 기준 저장소입니다. <br>
+			계정 목록, 사이트별 로그인 정보, QR 승인, 비밀번호 복사,
             자동완성 설정, 로컬 DB 확인 메뉴가 모두 폰 앱을 중심으로 동작합니다.
           </p>
         </div>
