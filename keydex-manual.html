@@ -599,74 +599,64 @@
       <article class="card">
         <img class="screen pc-tall" src="manual-assets/extension-connected.png" alt="폰 연결됨 상태의 확장 프로그램 팝업">
         <div class="card-body">
-          <h3>연결된 상태의 기본 메뉴</h3>
           <p>
             폰 페어링이 완료되면 확장 프로그램 팝업에 <strong>QR 로그인 시작</strong>, <strong>계정 등록/수정 QR</strong>,
             <strong>비밀번호 변경</strong>, <strong>연결 끊기</strong>가 표시됩니다.
           </p>
+		  <br>
+		  <h3>QR 로그인</h3>
+		  <p>
+		    로그인 페이지에서 <strong>QR 로그인 시작</strong>을 누르면 승인용 QR이 표시됩니다. 폰 앱으로 스캔하고 생체인증을 승인하면,
+		    해당 사이트에 저장된 ID와 비밀번호가 PC 로그인 폼에 자동 입력됩니다.
+		  </p>
+		  <ul>
+		    <li>사이트 도메인 기준으로 금고의 계정을 찾습니다.</li>
+		    <li>여러 계정이 있으면 폰 앱에서 사용할 계정을 선택합니다.</li>
+		    <li>설정에 따라 자동입력 후 로그인 버튼 클릭까지 수행할 수 있습니다.</li>
+		  </ul>
+		  <br>
+          <h3>계정 등록/수정 QR</h3>
+          <p>
+            웹사이트의 로그인, 회원가입, 계정 수정 화면에 입력된 ID/PW를 QR로 만들어 폰 앱에 전달합니다.
+            폰 앱은 사이트와 ID를 기준으로 기존 계정이 있으면 수정하고, 없으면 새 계정으로 등록합니다.
+          </p>
+          <ul>
+            <li>확장 프로그램은 입력값 전달자 역할만 합니다.</li>
+            <li>최종 저장 여부는 폰 앱에서 사용자가 확인합니다.</li>
+            <li>PC에는 계정 정보가 저장되지 않습니다.</li>
+          </ul>
+		  <br>
+          <h3>비밀번호 변경</h3>
+          <p>
+            사이트의 비밀번호 변경 화면에서 <strong>비밀번호 변경</strong>을 누르면 폰 앱이 해당 사이트 계정 선택을 처리합니다.
+            선택된 계정의 현재 비밀번호와 새 비밀번호가 변경 폼에 입력되는 흐름을 지원합니다.
+          </p>
+          <ul>
+            <li>비밀번호 변경 폼은 사이트마다 구조가 다르므로 일부 사이트에서는 입력란 인식이 제한될 수 있습니다.</li>
+            <li>변경 완료 후 새 비밀번호를 KeyDex에 저장하는 절차까지 함께 확인해야 합니다.</li>
+          </ul>
+		  <br>
+          <h3>연결 끊기</h3>
+          <p>
+            저장된 페어링 공개키와 연결 상태를 삭제 합니다.
+          </p>
+          <ul>
+            <li>다시 사용하려면 최초 페어링 QR을 새로 스캔해야 합니다.</li>
+          </ul>
         </div>
       </article>
-
-      <div class="grid">
-        <article class="card">
-          <img class="screen pc-tall" src="manual-assets/extension-login-qr.png" alt="QR 로그인 승인 대기 화면">
-          <div class="card-body">
-            <h3>QR 로그인</h3>
-            <p>
-              로그인 페이지에서 <strong>QR 로그인 시작</strong>을 누르면 승인용 QR이 표시됩니다. 폰 앱으로 스캔하고 생체인증을 승인하면,
-              해당 사이트에 저장된 ID와 비밀번호가 PC 로그인 폼에 자동 입력됩니다.
-            </p>
-            <ul>
-              <li>사이트 도메인 기준으로 금고의 계정을 찾습니다.</li>
-              <li>여러 계정이 있으면 폰 앱에서 사용할 계정을 선택합니다.</li>
-              <li>설정에 따라 자동입력 후 로그인 버튼 클릭까지 수행할 수 있습니다.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <img class="screen pc-tall" src="manual-assets/extension-save-qr.png" alt="계정 등록 또는 수정 QR 화면">
-          <div class="card-body">
-            <h3>계정 등록/수정 QR</h3>
-            <p>
-              웹사이트의 로그인, 회원가입, 계정 수정 화면에 입력된 ID/PW를 QR로 만들어 폰 앱에 전달합니다.
-              폰 앱은 사이트와 ID를 기준으로 기존 계정이 있으면 수정하고, 없으면 새 계정으로 등록합니다.
-            </p>
-            <ul>
-              <li>확장 프로그램은 입력값 전달자 역할만 합니다.</li>
-              <li>최종 저장 여부는 폰 앱에서 사용자가 확인합니다.</li>
-              <li>PC에는 계정 정보가 저장되지 않습니다.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <img class="screen pc-tall" src="manual-assets/extension-password-change.png" alt="비밀번호 변경 계정 선택 대기 화면">
-          <div class="card-body">
-            <h3>비밀번호 변경 지원</h3>
-            <p>
-              사이트의 비밀번호 변경 화면에서 <strong>비밀번호 변경</strong>을 누르면 폰 앱이 해당 사이트 계정 선택을 처리합니다.
-              선택된 계정의 현재 비밀번호와 새 비밀번호가 변경 폼에 입력되는 흐름을 지원합니다.
-            </p>
-            <ul>
-              <li>비밀번호 변경 폼은 사이트마다 구조가 다르므로 일부 사이트에서는 입력란 인식이 제한될 수 있습니다.</li>
-              <li>변경 완료 후 새 비밀번호를 KeyDex에 저장하는 절차까지 함께 확인해야 합니다.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="card">
-          <img class="screen pc-wide" src="manual-assets/extension-settings.png" alt="확장 프로그램 상세 설정">
-          <div class="card-body">
-            <h3>확장 프로그램 설정</h3>
-            <p>
-              릴레이 서버 URL, QR 유효 시간, 릴레이 조회 간격, 자동입력 후 로그인 버튼 클릭 옵션을 조정합니다.
-              폰 연결을 다시 해야 하는 경우에는 먼저 기존 연결을 끊고 새 연결 QR로 페어링합니다.
-            </p>
-          </div>
-        </article>
-      </div>
-
+      <br>
+      <article class="card">
+        <img class="screen pc-tall" src="manual-assets/extension-settings.png" alt="확장 프로그램 상세 설정">
+        <div class="card-body">
+          <h3>확장 프로그램 설정</h3>
+          <p>
+            릴레이 서버 URL, QR 유효 시간, 릴레이 조회 간격, 자동입력 후 로그인 버튼 클릭 옵션을 조정합니다.
+            폰 연결을 다시 해야 하는 경우에는 먼저 기존 연결을 끊고 새 연결 QR로 페어링합니다.
+          </p>
+        </div>
+      </article>
+      <br>
       <table class="feature-table" aria-label="PC 기능 요약">
         <thead>
           <tr>
